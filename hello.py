@@ -11,11 +11,17 @@ class Test(tornado.web.RequestHandler):
         print self.request.arguments
         self.write(params(self.request.arguments))
 
+class Hello(tornado.web.RequestHandler):
+    def get(self):
+        self.write("hello from tornado")
+
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello, world")
 
 if __name__ == "__main__":
-    application = tornado.web.Application([(r"/", MainHandler),(r"/api/foo", Test)])
+    application = tornado.web.Application([(r"/", MainHandler),
+                                           (r"/api8/hello", Hello)
+                                           (r"/api/foo", Test)])
     application.listen(8888)
     tornado.ioloop.IOLoop.current().start()
