@@ -8,13 +8,9 @@ def params(content):
 
 class Test(tornado.web.RequestHandler):
     def get(self):
-        print "viendo argumentos"
         print self.request.arguments
-        #self.set_header('Content-Type', 'application/javascript')
         self.write(params(self.request.arguments))
-        #json.dumps({ k: self.get_argument(k) for k in self.request.arguments })
-        #print dir(self.request.arguments)
-        #return self.request.arguments
+
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello, world")
